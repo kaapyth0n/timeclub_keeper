@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var VKontakteStrategy = require('passport-vkontakte').Strategy;
+var FoursquareStrategy = require('passport-foursquare').Strategy;
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/chaifai');
