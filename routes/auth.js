@@ -11,7 +11,6 @@ router.get('/vk/callback',
     passport.authenticate('vkontakte', {
         successRedirect: '/',
         failureRedirect: '/error',
-        session: true
     })
 );
 
@@ -23,7 +22,6 @@ router.get('/fs/callback',
     passport.authenticate('foursquare', {
         successRedirect: '/',
         failureRedirect: '/error',
-        session: true
     })
 );
 
