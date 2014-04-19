@@ -15,8 +15,16 @@ router.get('/vk/callback',
     })
 );
 
-router.get('/4s',
+router.get('/fs',
   passport.authenticate('foursquare')
+);
+
+router.get('/fs/callback',
+    passport.authenticate('foursquare', {
+        successRedirect: '/',
+        failureRedirect: '/error',
+        session: true
+    })
 );
 
 router.get('/logout',

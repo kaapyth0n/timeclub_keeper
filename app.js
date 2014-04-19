@@ -78,20 +78,40 @@ app.use(function(err, req, res, next) {
 var VKONTAKTE_APP_ID = '4316873';
 var VKONTAKTE_APP_SECRET = 'UGvtlYTxfXeql9jEL8uA';
 
+var FOURSQUARE_CLIENT_ID = '3YXAQ5X0R52YNXCT2K0WLDS0O1LX4JEKDBU2YPPIIMUIUYSR';
+var FOURSQUARE_CLIENT_SECRET = '5QTWJPGTS2NFLTEC2SRPS2AELIN1N1QBC3HC4EE2Z1QA1BML';
+
 passport.use(new VKontakteStrategy({
     clientID:     VKONTAKTE_APP_ID,
     clientSecret: VKONTAKTE_APP_SECRET,
     callbackURL:  "http://chaifai-105917.euw1-2.nitrousbox.com/auth/vk/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log("vk login success: " + JSON.stringify(profile));
     if (profile && profile.id) {
       User.findOneAndUpdate({ vkId: profile.id }, {
             vkId: profile.id,
             name: profile.displayName,
             avatar: profile._json.photo
         }, { upsert: true }, function (err, user) {
-        console.log("got user: " + JSON.stringify(user));
+        return done(err, user);
+      });
+    }
+  }
+));
+
+passport.use(new FoursquareStrategy({
+    clientID: FOURSQUARE_CLIENT_ID,
+    clientSecret: FOURSQUARE_CLIENT_SECRET,
+    callbackURL:  "http://chaifai-105917.euw1-2.nitrousbox.com/auth/fs/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log("fs login success: " + JSON.stringify(profile));
+    if (profile && profile.id) {
+      User.findOneAndUpdate({ foursquareId: profile.id }, {
+            foursquareId: profile.id,
+            name: profile.displayName,
+            avatar: profile._json.photo
+        }, { upsert: true }, function (err, user) {
         return done(err, user);
       });
     }
