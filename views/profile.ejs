@@ -1,0 +1,5 @@
+<% layout('layout') %>
+
+<h1><%= user.name %></h1>
+<h2>You are awesome!</h2>
+<%- link_to_if(user.vkId, "Аккаунт ВКонтакте", "https://vk.com/id" + user.vkId, { target: "_blank" }) %>
