@@ -1,10 +1,9 @@
 <% layout('layout') %>
 
-<p>Welcome, <%= user ? user.name : '' %></p>
-
 <div class="uk-grid" data-uk-grid-margin>
   <div class="uk-width-medium-1-2" id="now-in">
     <div class="uk-panel uk-panel-box main-content">
+    <p>Сейчас в кафе:</p>
       <% users.forEach(function(user){ %>
         <div class="user-in">
         <% if (user) { %>

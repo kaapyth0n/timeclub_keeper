@@ -1392,7 +1392,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-navbar-nav > li:hover > a,
 .uk-navbar-nav > li > a:focus,
 .uk-navbar-nav > li.uk-open > a {
-  background-color: #86640f;
+  background-color: #E6D49B;
   color: #86640f;
   outline: none;
   position: relative;

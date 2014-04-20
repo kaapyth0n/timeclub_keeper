@@ -18,8 +18,7 @@
               <li><a  href='/auth/logout'>Админ</a></li>
               <% if (user.admin) { %><li><%- link_to('пользователи', '/users') %></li><% } %>
             </ul>
-          </div>
-          <div class="uk-navbar-content uk-navbar-flip">
+          <div class="uk-navbar-content">
           <% if (user) {%>
             <% if (user.avatar) { %>
             <div class="avatar">
@@ -29,12 +28,15 @@
             <div class="account">
             <%- link_to(user.name, '/users/' + user._id) %>
             </div>
-            <a  href='/auth/logout'>выйти</a>
+            <ul class="uk-navbar-nav">
+              <li><a  href='/auth/logout'>Выйти</a></li>
+            </ul>
           <% } else { %>
             <span>логин:&nbsp;</span><a class="uk-icon uk-icon-large uk-icon-vk" title="ВКонтакте" href="/auth/vk"></a>
             <a class="uk-icon uk-icon-large uk-icon-foursquare" title="Foursquare" href="/auth/fs"></a>
           <% } %>
         </div>
+          </div>
         </div>
       </div>
     </nav>
