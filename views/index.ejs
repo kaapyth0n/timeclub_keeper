@@ -3,8 +3,8 @@
 <p>Welcome, <%= user ? user.name : '' %></p>
 
 <div class="uk-grid" data-uk-grid-margin>
-  <div class="uk-width-medium-1-2 main-content" id="now-in">
-    <div class="uk-panel uk-panel-box">
+  <div class="uk-width-medium-1-2" id="now-in">
+    <div class="uk-panel uk-panel-box main-content">
       <% users.forEach(function(user){ %>
         <div class="user-in">
         <% if (user) { %>
@@ -18,8 +18,8 @@
     </div>
   </div>
 
-<div class="uk-width-medium-1-2 main-content" id="schedule">
-  <div class="uk-panel uk-panel-box">
+<div class="uk-width-medium-1-2" id="schedule">
+  <div class="uk-panel uk-panel-box main-content">
     <legend>Сегодня:</legend>
     <legend><span>16:00 Тренинг  </span><i class="uk-icon-vk"></i></legend>
   </div>
