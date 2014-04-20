@@ -47,5 +47,10 @@ div.avatar img {
 .main-content {
   background: #8cc14c;
   border-radius: 10px 0px;
-  margin: 10px 20px;
+}
+.main-context legend {
+  padding: 10px 12px 10px 10px;
+}
+div.uk-panel .avatar {
+  padding: 10px 10px 0px 10px;
 }

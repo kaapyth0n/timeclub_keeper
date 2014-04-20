@@ -2,11 +2,26 @@
 
 <p>Welcome, <%= user ? user.name : '' %></p>
 
-<div class="uk-grid-1-2 main-content" id="now-in">
+<div class="uk-grid" data-uk-grid-margin>
+  <div class="uk-width-medium-1-2 main-content" id="now-in">
+    <div class="uk-panel uk-panel-box">
+      <% users.forEach(function(user){ %>
+        <div class="user-in">
+        <% if (user) { %>
+        <div class="avatar">
+          <%- img_tag(user.avatar) %>
+        </div>
+          <span><%= user.name %></span>
+        <% } %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
 
+<div class="uk-width-medium-1-2 main-content" id="schedule">
+  <div class="uk-panel uk-panel-box">
+    <legend>Сегодня:</legend>
+    <legend><span>16:00 Тренинг  </span><i class="uk-icon-vk"></i></legend>
+  </div>
 </div>
-
-<div class="uk-grid-1-2 main-content" id="schedule">
-  <legend>Сегодня:</legend>
-  <p><span>16:00 Тренинг</span><<i class="uk-icon-vk"></i></p>
 </div>
