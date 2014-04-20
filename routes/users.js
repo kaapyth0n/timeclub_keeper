@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res) {
-  res.render('users');
+  res.render('users', { user: req.user });
 });
 
 router.get('/:id', function(req, res) {
