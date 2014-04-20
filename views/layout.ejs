@@ -6,23 +6,25 @@
     <link rel='stylesheet' href='/javascripts/form-password.min.js'/>
     <link rel='stylesheet' href='/stylesheets/uikit.css'/>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
-    <link href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto|Lobster&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <nav class="uk-navbar uk-navbar-attached">
       <div class="uk-container uk-container-center">
           <a class="uk-navbar-brand" id="title" href="/">Чай Фай</a>
           <div class="uk-navbar-content uk-navbar-flip">
+          <a  href='/auth/logout'>ТОП-30</a>
+          <a  href='/auth/logout'>Админ</a>
           <% if (user) {%>
-            <div class="avatar">
             <% if (user.avatar) { %>
+            <div class="avatar">
               <%- img_tag(user.avatar) %>
             </div>
             <% } %>
             <div class="account">
             <%- link_to(user.name, '/users/' + user._id) %>
-            <a  href='/auth/logout'>выйти</a>
             </div>
+            <a  href='/auth/logout'>выйти</a>
           <% } else { %>
             <span>логин:&nbsp;</span><a class="uk-icon uk-icon-large uk-icon-vk" title="ВКонтакте" href="/auth/vk"></a>
             <a class="uk-icon uk-icon-large uk-icon-foursquare" title="Foursquare" href="/auth/fs"></a>

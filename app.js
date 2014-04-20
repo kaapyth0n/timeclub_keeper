@@ -106,12 +106,13 @@ passport.use(new FoursquareStrategy({
     callbackURL:  "http://chaifai-105917.euw1-2.nitrousbox.com/auth/fs/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log("fs login success: " + JSON.stringify(profile));
+    console.log("fs login success: " + JSON.stringify(JSON.parse(profile._raw).response.user.photo));
     if (profile && profile.id) {
+      var photo = JSON.parse(profile._raw).response.user.photo;
       User.findOneAndUpdate({ foursquareId: profile.id }, {
             foursquareId: profile.id,
-            name: profile.displayName,
-            avatar: profile._json.photo
+            name: profile.name.givenName + ' ' + profile.name.familyName,
+            avatar: photo.prefix + '64x64' + photo.suffix
         }, { upsert: true }, function (err, user) {
         return done(err, user);
       });
