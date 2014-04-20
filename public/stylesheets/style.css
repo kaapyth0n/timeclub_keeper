@@ -39,10 +39,10 @@ a:hover {
   overflow: hidden;
   margin-right: 2px;
   vertical-align: middle;
-  border-radius: 7px 0px;
 }
 div.avatar img {
   height: 32px;
+  border-radius: 7px 0px;
 }
 .main-content {
   background: #8cc14c;
