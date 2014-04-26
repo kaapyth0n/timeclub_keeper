@@ -4,14 +4,12 @@
   <div class="uk-width-medium-1-2" id="now-in">
     <div class="uk-panel uk-panel-box main-content">
     <p>Сейчас в кафе:</p>
-      <% users.forEach(function(user){ %>
+      <% users.forEach(function(u){ %>
         <div class="user-in">
-        <% if (user) { %>
         <div class="avatar">
-          <%- img_tag(user.avatar) %>
+          <%- img_tag(u.avatar) %>
         </div>
-          <span><%= user.name %></span>
-        <% } %>
+        <%- link_to(u.name, '/users/' + u.id) %>
         </div>
       <% }) %>
     </div>

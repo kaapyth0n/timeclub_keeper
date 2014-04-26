@@ -14,9 +14,10 @@
           <a class="uk-navbar-brand" id="title" href="/">Чай Фай</a>
           <div class="uk-navbar-flip">
             <ul class="uk-navbar-nav">
-              <li><a  href='/auth/logout'>ТОП-30</a></li>
-              <li><a  href='/auth/logout'>Админ</a></li>
-              <% if (user.admin) { %><li><%- link_to('пользователи', '/users') %></li><% } %>
+              <% if (user && user.admin) { %>
+              <li><%- link_to('график посещений', '/logs') %></li>
+              <li><%- link_to('пользователи', '/users') %></li>
+              <% } %>
             </ul>
           <div class="uk-navbar-content">
           <% if (user) {%>
@@ -28,9 +29,7 @@
             <div class="account">
             <%- link_to(user.name, '/users/' + user._id) %>
             </div>
-            <ul class="uk-navbar-nav">
-              <li><a  href='/auth/logout'>Выйти</a></li>
-            </ul>
+            <a  href='/auth/logout'>Выйти</a>
           <% } else { %>
             <span>логин:&nbsp;</span><a class="uk-icon uk-icon-large uk-icon-vk" title="ВКонтакте" href="/auth/vk"></a>
             <a class="uk-icon uk-icon-large uk-icon-foursquare" title="Foursquare" href="/auth/fs"></a>
@@ -40,9 +39,10 @@
         </div>
       </div>
     </nav>
-    <div class="uk-container uk-container-center" style="margin-top: 15px">
+    <div class="uk-container uk-container-center container"> 
       <%- body %>
     </div>
-
+    <div class="footer">
+    </div>
   </body>
 </html>

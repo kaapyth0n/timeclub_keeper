@@ -18,6 +18,7 @@ var User = require('./models/user');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+var logs = require('./routes/logs');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use(passport.session());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/logs', logs);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

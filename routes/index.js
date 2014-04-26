@@ -6,7 +6,7 @@ var User = require('../models/user');
 /* GET home page. */
 router.get('/', 
   function(req, res) {
-    User.find(function(err, users){
+    User.find({ inside: true }, function(err, users){
       res.render('index', { users: users, user: req.user, message: '' });
     });
   }
