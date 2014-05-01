@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "node_modules/.bin/mocha --reporter spec --require should `find tests -name '*.js'`"
+    "test": "nodejs_environment=test node_modules/.bin/mocha --reporter spec --require should `find tests -name '*.js'`"
   },
   "dependencies": {
     "express": "~4.0.0",
