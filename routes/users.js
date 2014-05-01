@@ -57,6 +57,11 @@ router.get('/:action/:id', function(req, res) {
         });
         else res.send(500);
       });
+    } else if (action == 'delete' && req.user.admin) {
+      User.remove(id, function(err, user){
+        res.status(err ? 500 : 200);
+        });
+      
     }
   }
 });

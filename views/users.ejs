@@ -1,0 +1,81 @@
+<% layout('layout') %>
+
+<h2>Пользователи</h2>
+<div class="uk-grid">
+  <div class="uk-width-1-5">
+    <ul class="uk-nav uk-nav-side">
+      <li class="<%= show == 'all' ? 'uk-active' : '' %>">
+        <%- link_to('Все', '/users') %>
+      </li>
+      <li class="<%= show == 'inside' ? 'uk-active' : '' %>">
+        <%- link_to('Кто внутри', '/users?show=inside') %>
+      </li>
+      <li class="<%= show == 'admins' ? 'uk-active' : '' %>">
+        <%- link_to('Администраторы', '/users?show=admins') %>
+      </li>
+    </ul>  
+  </div>
+  <div class="uk-width-4-5">
+<table class="uk-table">
+  <tbody>
+<% users.forEach(function(u, i) { %>
+    <tr>
+      <td> 
+        <% if (u.avatar) { %><div class="avatar"><%- img_tag(u.avatar) %></div><% } %>
+        <div class="account"><%- link_to(u.name, '/users/' + u._id) %><%= !!u.admin ? '&nbsp;(админ)' : '' %>
+</div>
+      </td>
+      <td class="uk-text-center">
+        <%- link_to_if(!!u.vkId, '&nbsp;', 'https://vk.com/id' + u.vkId, { class: 'uk-icon-small uk-icon-vk', target: '_blank' }) %>
+        <%- link_to_if(!!u.foursquareId, '&nbsp;', 'https://foursquare.com/user/' + u.foursquareId, { class: 'uk-icon-small uk-icon-foursquare', target: '_blank' }) %>
+      </td>
+      <% if (user.admin) { %>
+      <td class="uk-text-right">
+        <span class="money"><%= u.balance || '0' %></span>
+      </td>
+      <td class="uk-text-center">
+        <% if (u.inside) { %>
+        <%- link_to(' чек аут', '/users/checkout/' + u._id, { class: 'uk-text-danger uk-icon-medium uk-icon-sign-out' }) %>
+        <% } else { %>
+        <%- link_to(' чек ин', '/users/checkin/' + u._id, { class: 'uk-text-success uk-icon-medium uk-icon-sign-in' }) %>
+        <% } %>
+      </td>
+      <td>
+        <div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+          <button class="uk-button">
+            <i class="uk-icon-cog"></i>
+            <i class="uk-icon-caret-down"></i>
+          </button>
+          <div class="uk-dropdown">
+            <ul class="uk-nav uk-nav-dropdown">
+              <li>
+        <% if (u._id != user._id) { %>
+        <% if (u.admin) { %>
+          <%- link_to('разжаловать', '/users/revoke_admin/' + u._id, {class: "uk-text-danger"}) %>
+        <% } else { %>
+          <%- link_to('повысить', '/users/grant_admin/' + u._id) %>
+        <% } %>
+                <%- link_to('пополнить баланс', '' + u._id) %>
+                <a onclick="function(){
+                            if (confirm('Точно?')){
+                              $.ajax({
+                                url:'/users/delete/' + u._id,
+                                type:'POST',
+                                success:function(data){
+                                    alert('Удален');  
+                                  }
+                              })
+                            }}">удалить</a>
+        <% } %> 
+              </li>
+            </ul>
+          </div>
+        </div>
+      </td>
+      <% } %>
+    </tr>
+<% }) %>
+  </tbody>
+</table>
+</div>
+</div>

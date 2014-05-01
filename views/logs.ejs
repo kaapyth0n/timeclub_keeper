@@ -1,0 +1,20 @@
+<% layout('layout') %>
+
+<table class="uk-table uk-table-striped">
+<% logs.forEach(function(log) { %>
+  <tr>
+    <td>
+      <% if (log.action == 'checkin') { %>
+      <i class="uk-icon-medium uk-icon-sign-in uk-text-success"/>
+      <% } else if (log.action == 'checkout') { %>
+      <i class="uk-icon-medium uk-icon-sign-out uk-text-danger"/>
+      <% } %>
+      <div class="avatar"><%- img_tag(log.user.avatar) %></div>
+      <div class="account"><%- link_to(log.user.name, '/users/' + log.user._id) %></div>
+    </td>
+    <td class="uk-text-right">
+      <%= log.when %>
+    </td>
+  </tr>
+<% }) %>  
+</table>

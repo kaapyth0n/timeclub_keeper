@@ -1,6 +1,7 @@
 var passport = require('passport');
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user.js');
 
 // VK login
 router.get('/vk',
@@ -14,6 +15,18 @@ router.get('/vk/callback',
     })
 );
 
+router.get('/link/vk',
+    passport.authorize('vk-authorize'),
+    function(req, res) {
+      if (req.user) {
+        User.findOne({ vkId: req.account.vkId }, function(err, user) {
+          
+        });
+      }
+    }
+);
+
+// Fourquare login
 router.get('/fs',
   passport.authenticate('foursquare')
 );

@@ -17,8 +17,16 @@
 
 <div class="uk-width-medium-1-2" id="schedule">
   <div class="uk-panel uk-panel-box main-content">
-    <legend>Сегодня:</legend>
-    <legend><span>16:00 Тренинг  </span><i class="uk-icon-vk"></i></legend>
+    <p>Скоро:</p>
+      <% events.forEach(function(e){ %>
+        <div class="event-when">
+        <%- e.when.toLocaleTimeString() %>
+        </div>
+        <div class="event-description">
+        <%- e.description %>
+        </div>
+        <div style="clear:both"></div>
+      <% }) %>
   </div>
 </div>
 </div>

@@ -1,5 +1,23 @@
 <% layout('layout') %>
 
+<%- img_tag(profile.avatar) %>
 <h1><%= profile.name %></h1>
 <h2>You are awesome!</h2>
-<%- link_to_if(profile.vkId, "Аккаунт ВКонтакте", "https://vk.com/id" + profile.vkId, { target: "_blank" }) %>
+
+<!-- VK -->
+<div>
+<% if (profile.vkId) { %>
+<%- link_to("Аккаунт ВК", "http://vk.com/id" + profile.vkId, { class: "uk-icon-small uk-icon-vk", target: "_blank" }) %>
+<% } else if (user.admin || profile._id == user._id) { %>
+<%- link_to("Привязать аккаунт ВК", "/auth/vk") %>
+<% } %>
+</div>
+
+<!-- Foursquare -->
+<div>
+<% if (profile.foursquareId) { %>
+<%- link_to("Аккаунт Foursquare", "https://fourquare.com/user/" + profile.foursquareId, { class: "uk-icon-small uk-icon-foursquare", target: "_blank" }) %>
+<% } else if (user.admin || profile._id == user._id) { %>
+<%- link_to("Привязать аккаунт Foursquare", "/auth/fs") %>
+<% } %>
+</div>
