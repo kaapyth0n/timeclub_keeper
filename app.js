@@ -9,6 +9,8 @@ var VKontakteStrategy = require('passport-vkontakte').Strategy;
 var FoursquareStrategy = require('passport-foursquare').Strategy;
 var mongoose = require('mongoose');
 
+config = require('./config');
+
 mongoose.connect('mongodb://localhost/chaifai');
 
 // models
@@ -77,17 +79,10 @@ app.use(function(err, req, res, next) {
     });
 });
 
-// authorization settings
-var VKONTAKTE_APP_ID = '4316873';
-var VKONTAKTE_APP_SECRET = 'UGvtlYTxfXeql9jEL8uA';
-
-var FOURSQUARE_CLIENT_ID = '3YXAQ5X0R52YNXCT2K0WLDS0O1LX4JEKDBU2YPPIIMUIUYSR';
-var FOURSQUARE_CLIENT_SECRET = '5QTWJPGTS2NFLTEC2SRPS2AELIN1N1QBC3HC4EE2Z1QA1BML';
-
 passport.use(new VKontakteStrategy({
-    clientID:     VKONTAKTE_APP_ID,
-    clientSecret: VKONTAKTE_APP_SECRET,
-    callbackURL:  "http://chaifai-105917.euw1-2.nitrousbox.com/auth/vk/callback"
+    clientID:     config['vk.app_id'],
+    clientSecret: config['vk.app_secret'],
+    callbackURL:  config['vk.callback']
   },
   function(accessToken, refreshToken, profile, done) {
     if (profile && profile.id) {
@@ -103,9 +98,9 @@ passport.use(new VKontakteStrategy({
 ));
 
 passport.use(new FoursquareStrategy({
-    clientID: FOURSQUARE_CLIENT_ID,
-    clientSecret: FOURSQUARE_CLIENT_SECRET,
-    callbackURL:  "http://chaifai-105917.euw1-2.nitrousbox.com/auth/fs/callback"
+        clientID:     config['fs.app_id'],
+        clientSecret: config['fs.app_secret'],
+        callbackURL:  config['fs.callback']
   },
   function(accessToken, refreshToken, profile, done) {
     console.log("fs login success: " + JSON.stringify(JSON.parse(profile._raw).response.user.photo));

@@ -5,14 +5,17 @@ var config = {}
 // = DEV environment
 
 config.dev = {
-  'vk.app_id': '',
-  'vk.app_secret': '',
+    'vk.app_id'       : '',
+    'vk.app_secret'   : '',
+    'vk.callback'     : '',
 
-  'fs.app_id': '',
-  'fs.app_secret': '',
-  
-  'url': '',
-  'db': ''
+    // foursquare params
+    'fs.app_id'       : '',
+    'fs.app_secret'   : '',
+    'fs.callback'     : '',
+
+    'url'             : '',
+    'db'              : ''
 }
 
 // = TEST environment
