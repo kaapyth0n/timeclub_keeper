@@ -19,8 +19,40 @@ router.get('/', function(req, res) {
     User.find({ inside: true }).sort({ name: 1 }).populate('level').exec(function(err, users) {
       res.render('users', { user: req.user, users: users, show: 'inside' });
     });
+  } else if (show == 'find') {
+    res.render('users/user_find', { user: req.user, show: 'find' });
+  } else if (show == 'create') {
+    res.render('users/user_create', { user: req.user, show: 'create' });
   }
 });
+
+router.post('/', function(req, res) {
+    var show = req.param('show');
+    if ( !show || show == 'all') {
+        User.find().sort({admin: -1, name: 1}).exec(function(err, users) {
+            res.render('users/users', { user: req.user, users: users, show: 'all' });
+        });
+    } else if (show == 'find') {
+        var name = req.param('name');
+        var card = req.param('card');
+
+        User.find({ name: name }).sort({ card: card }).exec(function(err, users) {
+            res.render('users/users', { user: req.user, users: users, show: 'all' });
+        });
+    } else if (show == 'create') {
+        var name = req.param('name');
+        var card = req.param('card');
+
+        User({
+            name: name,
+            admin: false,
+            card: card
+        }).save(function(err, users) {
+            res.redirect('/users?show=all')
+        });
+    }
+});
+
 
 router.get('/:id', function(req, res) {
   User.findById(req.params.id, function(err, user) {

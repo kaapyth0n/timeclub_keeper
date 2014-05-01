@@ -16,6 +16,24 @@
   </div>
 
 <div class="uk-width-medium-1-2" id="schedule">
+  <% if (user && user.admin) { %>
+  <div class="uk-button-dropdown" data-uk-dropdown>
+    <button class="uk-button">Добавить событие <i class="uk-icon-caret-down"></i></button>
+    <div class="uk-dropdown">
+      <form class="uk-form" method="post" action="/events/add">
+        <div class="uk-form-row">
+          <input name="when" data-uk-datepicker="{format: 'DD.MM.YYYY'}"  placeholder="Время"/>
+        </div>
+        <div class="uk-form-row">  
+          <input name="description" placeholder="Описание"/>
+        </div>
+        <div class="uk-form-row uk-form-controls">
+          <button type="submit" class="uk-button uk-icon-plus"/>
+        </div>
+      </form>
+    </div>
+  </div>
+  <% } %>
   <div class="uk-panel uk-panel-box main-content">
     <p>Скоро:</p>
       <% events.forEach(function(e){ %>

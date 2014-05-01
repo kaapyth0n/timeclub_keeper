@@ -41,4 +41,13 @@ router.get('/levels/delete/:id', function(req, res) {
   }
 });
 
+/* Events */
+router.post('/events/add', function(req, res) {
+  if (req.user && req.user.admin) {
+    Event.create({ when: req.param('when'), description: req.param('description')}, function(err) {
+      res.redirect('/index');
+    });
+  }
+});
+
 module.exports = router;

@@ -6,9 +6,9 @@
 
 <!-- VK -->
 <div>
-<% if (profile.vkId) { %>
+<% if (profile && profile.vkId) { %>
 <%- link_to("Аккаунт ВК", "http://vk.com/id" + profile.vkId, { class: "uk-icon-small uk-icon-vk", target: "_blank" }) %>
-<% } else if (user.admin || profile._id == user._id) { %>
+<% } else if (user && (user.admin || profile._id == user._id)) { %>
 <%- link_to("Привязать аккаунт ВК", "/auth/vk") %>
 <% } %>
 </div>
@@ -17,7 +17,7 @@
 <div>
 <% if (profile.foursquareId) { %>
 <%- link_to("Аккаунт Foursquare", "https://fourquare.com/user/" + profile.foursquareId, { class: "uk-icon-small uk-icon-foursquare", target: "_blank" }) %>
-<% } else if (user.admin || profile._id == user._id) { %>
+<% } else if (user && (user.admin || profile._id == user._id) ) { %>
 <%- link_to("Привязать аккаунт Foursquare", "/auth/fs") %>
 <% } %>
 </div>

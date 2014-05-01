@@ -8,7 +8,8 @@ var userSchema = new mongoose.Schema({
   avatar: String,
   admin: Boolean,
   inside: Boolean,
-  level: { type: mongoose.Schema.Types.ObjectId, ref: 'Level' }
+  level: { type: mongoose.Schema.Types.ObjectId, ref: 'Level' },
+  card: Number
 });
 
 userSchema.methods.checkin = function(callback) {
