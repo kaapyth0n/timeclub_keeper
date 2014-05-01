@@ -7,7 +7,8 @@ var userSchema = new mongoose.Schema({
   foursquareId: String,
   avatar: String,
   admin: Boolean,
-  inside: Boolean
+  inside: Boolean,
+  level: { type: mongoose.Schema.Types.ObjectId, ref: 'Level' }
 });
 
 userSchema.methods.checkin = function(callback) {

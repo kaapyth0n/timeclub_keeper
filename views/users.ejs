@@ -30,6 +30,9 @@
         <%- link_to_if(!!u.foursquareId, '&nbsp;', 'https://foursquare.com/user/' + u.foursquareId, { class: 'uk-icon-small uk-icon-foursquare', target: '_blank' }) %>
       </td>
       <% if (user.admin) { %>
+      <td>
+        <%= user.level ? user.level.name : '' %>
+      </td>
       <td class="uk-text-right">
         <span class="money"><%= u.balance || '0' %></span>
       </td>

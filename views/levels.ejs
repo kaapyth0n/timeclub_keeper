@@ -1,0 +1,39 @@
+<%- layout('layout') %>
+
+<div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+  <button class="uk-button">Добавить <i class="uk-icon-caret-down"></i></button>
+  <div class="uk-dropdown">
+    <form class="uk-form" method="post" action="/levels/add">
+      <div class="uk-form-row">
+        <input name="name" placeholder="Название"/>
+      </div>
+      <div class="uk-form-row">
+        <input name="pricing" placeholder="Тарифный план"/>
+      </div>
+      <div class="uk-form-row uk-form-controls">
+        <button type="submit" class="uk-button uk-icon-plus"></button>
+      </div>
+    </form>
+  </div>
+</div>
+<table class="uk-table uk-table-striped">
+  <thead>
+    <th>Название</th>
+    <th>Тарифный план</th>
+    <th></th>
+  </thead>
+  <tbody>
+<% levels.forEach(function(level) { %>
+    <tr>
+      <td><%= level.name %></td>
+      <td>
+        <% level.pricing.forEach(function(price, index) { %>
+          <%= (index > 0 ? ' - ' : '') + price + ' руб.' %>
+        <% }); %>
+      </td>
+      <td class="uk-text-right">
+        <%- link_to('&nbsp', '/levels/delete/' + level._id, { class: 'uk-icon-small uk-icon-minus uk-text-danger', title: 'Удалить' }) %>
+    </tr>
+<% }); %>
+  </tbody>
+</table>

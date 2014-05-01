@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/user');
+var Level = require('../models/level');
 
 var router = express.Router();
 
@@ -7,15 +8,15 @@ var router = express.Router();
 router.get('/', function(req, res) {
   var show = req.param('show');
   if (!show || show == 'all') {
-    User.find().sort({admin: -1, name: 1}).exec(function(err, users) {
+    User.find().sort({admin: -1, name: 1}).populate('level').exec(function(err, users) {
       res.render('users', { user: req.user, users: users, show: 'all' });
     });
   } else if (show == 'admins') {
-    User.find({ admin: true }).sort({ name: 1 }).exec(function(err, users) {
+    User.find({ admin: true }).sort({ name: 1 }).populate('level').exec(function(err, users) {
       res.render('users', { user: req.user, users: users, show: 'admins' });
     });
   } else if (show == 'inside') {
-    User.find({ inside: true }).sort({ name: 1 }).exec(function(err, users) {
+    User.find({ inside: true }).sort({ name: 1 }).populate('level').exec(function(err, users) {
       res.render('users', { user: req.user, users: users, show: 'inside' });
     });
   }

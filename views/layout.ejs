@@ -16,8 +16,16 @@
           <div class="uk-navbar-flip">
             <ul class="uk-navbar-nav">
               <% if (user && user.admin) { %>
-              <li><%- link_to('график посещений', '/logs') %></li>
-              <li><%- link_to('пользователи', '/users') %></li>
+              <li class="uk-parent" data-uk-dropdown>
+                <a href>Админ</a>
+                <div class="uk-dropdown">
+                  <ul class="uk-nav">
+                    <li><%- link_to('пользователи', '/users') %></li>
+                    <li><%- link_to('график посещений', '/logs') %></li>
+                    <li><%- link_to('уровни пользователей', '/levels') %></li>
+                  </ul>
+                </div>
+              </li>
               <% } %>
             </ul>
           <div class="uk-navbar-content">
