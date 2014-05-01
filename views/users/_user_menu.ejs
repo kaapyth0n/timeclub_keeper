@@ -1,0 +1,19 @@
+<div class="uk-width-1-5">
+    <ul class="uk-nav uk-nav-side">
+      <li class="<%= show == 'all' ? 'uk-active' : '' %>">
+        <%- link_to('Все', '/users') %>
+      </li>
+      <li class="<%= show == 'inside' ? 'uk-active' : '' %>">
+        <%- link_to('Кто внутри', '/users?show=inside') %>
+      </li>
+      <li class="<%= show == 'admins' ? 'uk-active' : '' %>">
+        <%- link_to('Администраторы', '/users?show=admins') %>
+      </li>
+      <li class="">
+        <%- link_to('Найти пользователя', '/users?show=find') %>
+      </li>
+      <li class="">
+        <%- link_to('Создать пользователя', '/users?show=create') %>
+      </li>
+    </ul>
+</div>

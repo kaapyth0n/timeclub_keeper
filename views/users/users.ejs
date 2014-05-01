@@ -1,20 +1,8 @@
-<% layout('layout') %>
+<% layout('../layout') %>
 
 <h2>Пользователи</h2>
 <div class="uk-grid">
-  <div class="uk-width-1-5">
-    <ul class="uk-nav uk-nav-side">
-      <li class="<%= show == 'all' ? 'uk-active' : '' %>">
-        <%- link_to('Все', '/users') %>
-      </li>
-      <li class="<%= show == 'inside' ? 'uk-active' : '' %>">
-        <%- link_to('Кто внутри', '/users?show=inside') %>
-      </li>
-      <li class="<%= show == 'admins' ? 'uk-active' : '' %>">
-        <%- link_to('Администраторы', '/users?show=admins') %>
-      </li>
-    </ul>  
-  </div>
+  <%- partial('_user_menu.ejs', {show:show}) %>
   <div class="uk-width-4-5">
 <table class="uk-table">
   <tbody>
@@ -29,7 +17,7 @@
         <%- link_to_if(!!u.vkId, '&nbsp;', 'https://vk.com/id' + u.vkId, { class: 'uk-icon-small uk-icon-vk', target: '_blank' }) %>
         <%- link_to_if(!!u.foursquareId, '&nbsp;', 'https://foursquare.com/user/' + u.foursquareId, { class: 'uk-icon-small uk-icon-foursquare', target: '_blank' }) %>
       </td>
-      <% if (user.admin) { %>
+      <% if (user && user.admin) { %>
       <td class="uk-text-right">
         <span class="money"><%= u.balance || '0' %></span>
       </td>

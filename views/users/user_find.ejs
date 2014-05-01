@@ -1,0 +1,15 @@
+<% layout('../layout') %>
+
+<h2>Пользователи</h2>
+<div class="uk-grid">
+  <%- partial('_user_menu.ejs', {show:show}) %>
+  <div class="uk-width-4-5">
+
+<form action="/users?show=find" method="post">
+Name: <input type="text" name="name"><br>
+Card: <input type="text" name="card"><br>
+<button type="submit">Find</button>
+</form>
+
+</div>
+</div>
